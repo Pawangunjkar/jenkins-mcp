@@ -13,7 +13,7 @@ Author: **Pawan Gunjkar** (pawangunjkar@gmail.com)
 ### Option 1: PyPI / uvx (Recommended)
 
 ```bash
-uvx jenkins-mcp
+uvx pawangunjkar-jenkins-mcp
 ```
 
 **Cursor / Claude Desktop** — add to `.cursor/mcp.json`:
@@ -23,7 +23,7 @@ uvx jenkins-mcp
   "mcpServers": {
     "jenkins": {
       "command": "uvx",
-      "args": ["jenkins-mcp"],
+      "args": ["pawangunjkar-jenkins-mcp"],
       "env": {
         "JENKINS_URL": "http://localhost:8080",
         "JENKINS_USERNAME": "admin",
@@ -251,7 +251,7 @@ Add to your Cursor MCP settings (`.cursor/mcp.json`):
   "mcpServers": {
     "jenkins": {
       "command": "uvx",
-      "args": ["jenkins-mcp"],
+      "args": ["pawangunjkar-jenkins-mcp"],
       "env": {
         "JENKINS_URL": "http://localhost:8080",
         "JENKINS_USERNAME": "admin",
@@ -271,7 +271,7 @@ Add to your Claude Desktop config (`claude_desktop_config.json`):
   "mcpServers": {
     "jenkins": {
       "command": "uvx",
-      "args": ["jenkins-mcp"],
+      "args": ["pawangunjkar-jenkins-mcp"],
       "env": {
         "JENKINS_URL": "http://localhost:8080",
         "JENKINS_USERNAME": "admin",

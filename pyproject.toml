@@ -1,5 +1,5 @@
 [project]
-name = "jenkins-mcp"
+name = "pawangunjkar-jenkins-mcp"
 version = "1.0.0"
 description = "MCP server for Jenkins CI/CD operations — 53 tools for job management, builds, pipelines, nodes, credentials, plugins, and more"
 requires-python = ">=3.10"
@@ -27,7 +27,7 @@ dependencies = [
 ]
 
 [project.scripts]
-jenkins-mcp = "server:main"
+pawangunjkar-jenkins-mcp = "server:main"
 
 [project.urls]
 Homepage = "https://github.com/Pawangunjkar/jenkins-mcp"

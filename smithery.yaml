@@ -22,7 +22,7 @@ startCommand:
   commandFunction: |-
     (config) => ({
       command: 'uvx',
-      args: ['jenkins-mcp'],
+      args: ['pawangunjkar-jenkins-mcp'],
       env: {
         JENKINS_URL: config.JENKINS_URL,
         JENKINS_USERNAME: config.JENKINS_USERNAME,
