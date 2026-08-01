@@ -1939,5 +1939,10 @@ def _format_build_summary(label: str, job_name: str, data: dict) -> str:
 # Entry Point
 # ============================================================
 
-if __name__ == "__main__":
+def main() -> None:
+    """Console entry point for PyPI / uvx installs."""
     mcp.run(transport="stdio")
+
+
+if __name__ == "__main__":
+    main()

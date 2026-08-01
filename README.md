@@ -4,7 +4,52 @@
 
 A comprehensive [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that exposes the full Jenkins REST API as AI-ready tools. Connect your AI assistant (Cursor, Claude Desktop, or any MCP client) to manage Jenkins servers through natural language.
 
-Author: **Pawan Gunjkar** (pawangunjkar@gamil.com)
+Author: **Pawan Gunjkar** (pawangunjkar@gmail.com)
+
+---
+
+## 📥 Install
+
+### Option 1: PyPI / uvx (Recommended)
+
+```bash
+uvx jenkins-mcp
+```
+
+**Cursor / Claude Desktop** — add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "jenkins": {
+      "command": "uvx",
+      "args": ["jenkins-mcp"],
+      "env": {
+        "JENKINS_URL": "http://localhost:8080",
+        "JENKINS_USERNAME": "admin",
+        "JENKINS_API_TOKEN": "your-api-token"
+      }
+    }
+  }
+}
+```
+
+### Option 2: Smithery
+
+```bash
+npx -y @smithery/cli install jenkins-mcp --client cursor
+```
+
+### Option 3: Clone from GitHub
+
+```bash
+git clone https://github.com/Pawangunjkar/jenkins-mcp.git
+cd jenkins-mcp
+uv sync
+uv run server.py
+```
+
+> See [PUBLISHING.md](PUBLISHING.md) for full publishing steps.
 
 ---
 
@@ -205,8 +250,8 @@ Add to your Cursor MCP settings (`.cursor/mcp.json`):
 {
   "mcpServers": {
     "jenkins": {
-      "command": "uv",
-      "args": ["run", "--directory", "/path/to/jenkins-mcp", "server.py"],
+      "command": "uvx",
+      "args": ["jenkins-mcp"],
       "env": {
         "JENKINS_URL": "http://localhost:8080",
         "JENKINS_USERNAME": "admin",
@@ -225,8 +270,8 @@ Add to your Claude Desktop config (`claude_desktop_config.json`):
 {
   "mcpServers": {
     "jenkins": {
-      "command": "uv",
-      "args": ["run", "--directory", "/path/to/jenkins-mcp", "server.py"],
+      "command": "uvx",
+      "args": ["jenkins-mcp"],
       "env": {
         "JENKINS_URL": "http://localhost:8080",
         "JENKINS_USERNAME": "admin",

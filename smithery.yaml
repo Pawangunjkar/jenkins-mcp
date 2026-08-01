@@ -1,0 +1,35 @@
+# Smithery.ai configuration — https://smithery.ai/docs/build/publish
+# Submit this repo at https://smithery.ai after publishing to PyPI
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      JENKINS_URL:
+        type: string
+        description: Jenkins server URL (e.g. http://localhost:8080)
+      JENKINS_USERNAME:
+        type: string
+        description: Jenkins username
+      JENKINS_API_TOKEN:
+        type: string
+        description: Jenkins API token
+    required:
+      - JENKINS_URL
+      - JENKINS_USERNAME
+      - JENKINS_API_TOKEN
+  commandFunction: |-
+    (config) => ({
+      command: 'uvx',
+      args: ['jenkins-mcp'],
+      env: {
+        JENKINS_URL: config.JENKINS_URL,
+        JENKINS_USERNAME: config.JENKINS_USERNAME,
+        JENKINS_API_TOKEN: config.JENKINS_API_TOKEN
+      }
+    })
+  exampleConfig:
+    JENKINS_URL: "http://localhost:8080"
+    JENKINS_USERNAME: "admin"
+    JENKINS_API_TOKEN: "your-api-token-here"
