@@ -31,7 +31,7 @@ twine upload dist/*
   "mcpServers": {
     "jenkins": {
       "command": "uvx",
-      "args": ["pawangunjkar-jenkins-mcp"],
+      "args": ["jenkins-mcp"],
       "env": {
         "JENKINS_URL": "http://localhost:8080",
         "JENKINS_USERNAME": "admin",
