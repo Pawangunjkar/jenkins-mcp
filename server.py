@@ -11,6 +11,7 @@ Usage:
     uv run mcp dev server.py        # Run with MCP Inspector (for testing)
 """
 
+import os
 import sys
 import json
 from mcp.server.fastmcp import FastMCP
@@ -1939,9 +1940,41 @@ def _format_build_summary(label: str, job_name: str, data: dict) -> str:
 # Entry Point
 # ============================================================
 
+@mcp.custom_route("/health", methods=["GET"])
+async def health_check(_request):
+    from starlette.responses import JSONResponse
+    return JSONResponse({"status": "healthy", "server": "jenkins-mcp"})
+
+
 def main() -> None:
-    """Console entry point for PyPI / uvx installs."""
-    mcp.run(transport="stdio")
+    """Console entry point for PyPI / uvx installs and hosted HTTP containers."""
+    transport = os.environ.get("MCP_TRANSPORT", "").strip().lower()
+    if not transport:
+        if "--http" in sys.argv:
+            transport = "streamable-http"
+        elif os.environ.get("K_SERVICE"):
+            transport = "streamable-http"
+        else:
+            transport = "stdio"
+
+    if transport in ("http", "streamable-http", "sse"):
+        port = int(os.environ.get("PORT", "8080"))
+        host = os.environ.get("HOST", "0.0.0.0")
+        mcp.settings.host = host
+        mcp.settings.port = port
+        mcp.settings.stateless_http = True
+        mcp.settings.json_response = True
+        try:
+            from mcp.server.transport_security import TransportSecuritySettings
+            mcp.settings.transport_security = TransportSecuritySettings(
+                enable_dns_rebinding_protection=False,
+            )
+        except ImportError:
+            pass
+        resolved = "sse" if transport == "sse" else "streamable-http"
+        mcp.run(transport=resolved)
+    else:
+        mcp.run(transport="stdio")
 
 
 if __name__ == "__main__":

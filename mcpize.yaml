@@ -1,0 +1,36 @@
+version: 1
+name: pawangunjkar-jenkins-mcp
+description: "Enterprise Jenkins CI/CD MCP server with 53 tools for job lifecycle management, parameterized build triggers, console log triage, flaky pipeline stage analysis, queue and executor diagnostics, node orchestration, views, folders, plugins, and credentials."
+runtime: python
+entry: server.py
+
+startCommand:
+  type: http
+  command: python -m server --http
+
+credentials_mode: per_user
+credentials:
+  - name: JENKINS_URL
+    description: "Base URL of your Jenkins controller (e.g., https://jenkins.example.com)."
+    required: true
+    placeholder: "https://jenkins.example.com"
+  - name: JENKINS_USERNAME
+    description: "Jenkins username associated with your API token."
+    required: true
+    placeholder: "ci-bot"
+  - name: JENKINS_API_TOKEN
+    description: "Jenkins API token (User -> Configure -> API Token)."
+    required: true
+    placeholder: "your-jenkins-api-token"
+  - name: JENKINS_SSL_VERIFY
+    description: "Verify TLS certificates ('true' or 'false' for internal self-signed certs)."
+    required: false
+    placeholder: "true"
+  - name: JENKINS_TIMEOUT
+    description: "HTTP request timeout in seconds (default: 30)."
+    required: false
+    placeholder: "30"
+  - name: JENKINS_MCP_CACHE_DIR
+    description: "Optional writable directory for local session credential cache."
+    required: false
+    placeholder: "/tmp/jenkins-mcp-cache"
