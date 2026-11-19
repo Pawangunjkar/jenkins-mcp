@@ -4,6 +4,9 @@ description: "Enterprise Jenkins CI/CD MCP server with 53 tools for job lifecycl
 runtime: python
 entry: server.py
 
+build:
+  command: python -m py_compile server.py
+
 startCommand:
   type: http
   command: python -m server --http
